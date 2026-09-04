@@ -1,3 +1,49 @@
+/* Palette */
+:root {
+  --dark: #4A080A;
+  --light: #FFEDDB;
+  --gold: #D9B77A;
+  --accent: #B5935C;
+  --text: #252F19;
+}
+
 body {
-    background-color: skyblue;
+  font-family: 'Cutive Mono', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.main-header {
+  background: var(--dark);
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;     
+  padding: 0 30px;
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo {
+  height: 160px;
+  width: auto;
+  display: block;
+}
+
+.nav a {
+  color: var(--light);
+  text-decoration: none;
+  margin-left: 32px;
+}
+
+.nav a:hover {
+  color: var(--gold);
 }
