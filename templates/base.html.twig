@@ -1,18 +1,28 @@
 <!DOCTYPE html>
+<html lang="fr">
 <html>
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Chez Deb{% endblock %}</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap">
+        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     </head>
 
     <body>
 
-        <header>
-            <nav>
-                <a href="/">Accueil</a>
-                <a href="/a-propos">La petite histoire</a>
-                <a href="/carte">Carte</a>
-            </nav>
+        <header class="main-header">
+            <div class="header-content">
+                <a href="/" class="logo-link">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo Chez Deb" class="logo">
+                </a>
+
+                <nav class="nav">
+                    <a href="/a-propos">La petite histoire</a>
+                    <a href="/carte">Carte</a>
+                    <a href="/reservations">Réservation et contact</a>
+                    <a href="/photos">Photos</a>
+                </nav>
+            </div>
         </header>
 
         <main>
