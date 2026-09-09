@@ -1,15 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/about.css') }}">
+{% endblock %}
+
 {% block body %}
 
-<h1> Chez Deb c'est... </h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat elementum magna at ultricies. Aliquam vitae nibh fermentum,
- ullamcorper magna scelerisque, fringilla magna. Fusce ornare erat non purus suscipit maximus. Suspendisse ornare, mi eu mollis eleifend,
-  nunc risus accumsan elit, eget placerat orci ipsum ut arcu. Donec neque nulla, accumsan in molestie ut, laoreet sit amet massa. 
-  Duis et massa in tellus commodo congue. Aliquam sit amet rutrum justo. Maecenas massa lectus, pretium vitae venenatis in, ultricies sit 
-  amet tortor. Pellentesque velit velit, tincidunt non ligula a, malesuada dignissim lectus. Sed vestibulum augue eget tincidunt 
-  ullamcorper. Ut dictum lacus sagittis, lacinia elit sed, sagittis leo. Ut semper leo sit amet purus imperdiet, sit amet pretium elit 
-  blandit. Nulla vestibulum turpis ligula, non mattis metus pharetra non. Proin nisi tortor, mattis a quam ac, commodo fringilla sapien. 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+<section class="about">
+    <div class="about-image">
+        <img src="{{ asset('images/apropos.jpg') }}" alt="Photo du bar">
+    </div>
+
+    <div class="about-text">
+        <h1>Chez Deb c'est...</h1>
+        <p> Un bar où l’on cultive le goût des choses simples : une ambiance rétro, un décor rempli d’objets qui ont vécu, et une atmosphère chaleureuse 
+        qui fait partie de notre identité. Situé sur la place Saint‑Nicolas, nous sommes un lieu où l’on vient pour se détendre, discuter, rire et partager 
+        un moment authentique. </p>
+        <p> Notre histoire, c’est celle d’Olivier, qui a imaginé ce bar comme un endroit où chacun se sent immédiatement à l’aise. Son expérience derrière 
+        les comptoirs de Valenciennes lui a donné l’envie de créer un lieu convivial, sans prétention, mais avec une vraie personnalité. Chaque détail du 
+        décor a été choisi pour rappeler les cafés d’antan, tout en gardant une touche moderne et vivante. </p>
+        <p> Notre carte reflète cet esprit : des cocktails revisités à partir de spiritueux traditionnels, des bières pression, et les incontournables 
+        flammiches au maroilles qui font partie de notre ADN. La musique rétro, les échanges spontanés et la bonne humeur des habitués donnent à Chez Deb 
+        une ambiance unique, chaleureuse et sincère. </p>
+        <p> Nous sommes fiers de faire partie de la vie du quartier et de contribuer à l’énergie de la place Saint‑Nicolas. Chez Deb, on ne cherche pas à 
+        en faire trop : on veut simplement offrir un endroit où l’on se sent bien, où l’on revient, et où chaque visite devient un bon souvenir. </p>
+    </div>
+</section>
+
 
 {% endblock %}
