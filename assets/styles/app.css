@@ -67,7 +67,6 @@ main {
     background: var(--dark);
     color: var(--light);
     padding: 0px 20px;
-    margin-top: 60px;
 }
 
 .footer-content {
