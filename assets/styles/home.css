@@ -1,0 +1,102 @@
+body {
+    overflow-x: hidden;
+}
+
+/* Hero */
+.hero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sections */
+section {
+    padding: 0 20px;
+    color: var(--text);
+}
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0; 
+}
+
+.welcome h1 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.welcome-content {
+    padding: 0 40px; 
+    text-align: center;
+}
+
+.welcome-content p {
+    text-align: justify; /* texte justifié */
+}
+
+.info-sections {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin: 20px auto;
+    gap: 40px; 
+    padding: 0 20px; 
+    box-sizing: border-box; 
+}
+
+.address, .hours {
+    flex: 1;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .info-sections {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .address, .hours {
+        flex: none;
+        width: 100%;
+    }
+}
+
+
+.address h2,
+.hours h2 {
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.hours ul {
+    list-style: none;
+    padding: 0;
+}
+
+.hours li {
+    margin: 5px 0;
+}
+
+.map-container {
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+    margin: 30px auto 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}

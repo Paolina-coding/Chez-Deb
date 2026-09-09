@@ -1,12 +1,50 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/home.css') }}">
+{% endblock %}
+
 {% block body %}
 
-<h1>{{ site_name }}</h1>
-<h2> Bienvenue ! </h2>
-<p>Courte présentation : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat elementum magna at ultricies. 
-Aliquam vitae nibh fermentum, ullamcorper magna scelerisque, fringilla magna. Fusce ornare erat non purus suscipit maximus. 
-Suspendisse ornare, mi eu mollis eleifend, nunc risus accumsan elit, eget placerat orci ipsum ut arcu. Donec neque nulla, accumsan in 
-molestie ut, laoreet sit amet massa. Duis et massa in tellus commodo congue. </p>
+<section class="hero">
+    <img src="{{ asset('images/homehero.png') }}" alt="Photo du bar" class="hero-img">
+</section>
+
+<section class="welcome">
+    <div class="welcome-content">
+        <h1>Bienvenue</h1>
+        <p>
+            Chez Deb est un bar chic’n’roll installé sur la place Saint‑Nicolas à Valenciennes, un lieu simple, vivant et authentique où l'on 
+            vient pour passer un bon moment. Venez découvrir notre ambiance vintage chaleureuse, nos cocktails rétro revisités et notre 
+            accueil convivial. 
+        </p>
+    </div>
+</section>
+
+<section class="info-sections">
+    <div class="address">
+        <h2>Notre adresse</h2>
+        <p>69 Rue de Paris — 59300 Valenciennes</p>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4280.817660094231!2d3.5198495883084586!3d50.35929293370414!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2ed00395b6343%3A0x5e9d52c8747a491!2sChez%20deb!5e0!3m2!1sfr!2sus!4v1788960606172!5m2!1sfr!2sus"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="hours">
+        <h2>Nos horaires</h2>
+        <ul>
+            <li>Lundi : Fermé</li>
+            <li>Mardi & Mercredi : 17:00 - 00:00</li>
+            <li>Jeudi : 17:00 - 02:00</li>
+            <li>Vendredi & Samedi : 17:00 - 03:00</li>
+            <li>Dimanche : Fermé (privatisation possible)</li>
+        </ul>
+    </div>
+</section>
 
 {% endblock %}
