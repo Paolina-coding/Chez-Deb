@@ -47,3 +47,87 @@ body {
 .nav a:hover {
   color: var(--gold);
 }
+
+/* Main */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1; 
+}
+
+
+/* Footer */
+.main-footer {
+    background: var(--dark);
+    color: var(--light);
+    padding: 0px 20px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.footer-hours, .footer-social, .footer-nav {
+    text-align: center;
+}
+
+.footer-hours h3 {
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.footer-hours p {
+    margin: 3px 0;
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.icon-instagram, .icon-facebook {
+    width: 40px;
+    height: 40px;
+    fill: var(--light);
+}
+
+.footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-nav a {
+    color: var(--light);
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.footer-nav a:hover {
+    color: var(--gold);
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-nav {
+        text-align: center;
+    }
+}
