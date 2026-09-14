@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/reservation.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<section class="reservation-contact">
+
+    <div class="reservation-block">
+        <h1>Réserver une table</h1>
+
+        <form class="reservation-form">
+            <label for="name">Nom de la réservation</label>
+            <input type="text" id="name" name="name" placeholder="Votre nom">
+
+            <label for="people">Nombre de personnes</label>
+            <input type="number" id="people" name="people" min="1" placeholder="Ex : 4">
+
+            <label for="datetime">Date et heure</label>
+            <input type="datetime-local" id="datetime" name="datetime">
+
+            <label for="phone">Numéro de téléphone (pour vous recontacter)</label>
+            <input type="tel" id="phone" name="phone" placeholder="Ex : 07 12 34 56 78" required>
+
+            <button type="submit" class="reserve-btn">Réserver</button>
+        </form>
+    </div>
+
+    <div class="contact-block">
+        <h1>Nous contacter</h1>
+        <p>
+            Pour toute réservation de table en intérieur, privatisation du dimanche ou autre question,
+            merci de contacter ce numéro :
+        </p>
+        <p class="contact-phone">07 51 62 91 39</p>
+    </div>
+
+</section>
+
+{% endblock %}
