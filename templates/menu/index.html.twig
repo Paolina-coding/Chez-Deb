@@ -1,8 +1,185 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/menu.css') }}">
+{% endblock %}
+
 {% block body %}
 
-<h1>La carte “Chez Deb”</h1>
-<p>Voici la carte</p>
+<section class="menu">
+    <h1 class="menu-title">La carte “Chez Deb”</h1>
+
+    <!-- BIÈRES -->
+    <div class="menu-section">
+        <h2>Les bières</h2>
+
+        <h3 class="menu-heading"><span>Les fûts</span> <span>25cl / 33cl / 50cl</span></h3>
+        <ul class="menu-list">
+            <li><span>Bonsecours tradition 8°</span> <span>4,50€ / 5,50€ / 8,00€</span></li>
+            <li><span>Brique Housse Yankee Trouble 6,5°</span> <span>4,50€ / 5,50€ / 8,00€</span></li>
+            <li><span>Meteor Cerise 5°</span> <span>4,50€ / 5,50€ / 8,00€</span></li>
+            <li><span>La Francette 4,5°</span> <span>3,50€ / 4,50€ / 6,00€</span></li>
+            <li><span>Bière du moment</span> <span>4,50€ / 5,50€ / 8,00€</span></li>
+        </ul>
+
+        <h3>Les canettes</h3>
+        <ul class="menu-list">
+            <li><span>Duvel 8,5° (33cl)</span><span>6,00€</span></li>
+            <li><span>Duvel Citra 9,5° (33cl)</span><span>6,00€</span></li>
+            <li><span>Chimay Bleue 9° (33cl)</span><span>6,00€</span></li>
+            <li><span>Westmalle 9,5° (33cl)</span><span>6,00€</span></li>
+        </ul>
+
+        <p class="menu-note">Supplément picon (4cl) — 1,00€</p>
+    </div>
+
+    <!-- SOFTS -->
+    <div class="menu-section">
+        <h2>Les softs</h2>
+
+        <h3>33cl</h3>
+        <ul class="menu-list">
+            <li><span>Pepsi, Pepsi Max, Perrier</span><span>3,50€</span></li>
+        </ul>
+
+        <h3>25cl</h3>
+        <ul class="menu-list">
+            <li><span>Orangina, Schweppes, Schweppes Agrume, Lipton Ice Tea</span><span>3,00€</span></li>
+        </ul>
+
+        <h3>20cl</h3>
+        <ul class="menu-list">
+            <li><span>Limonade Villers, Eau Villers, Jus divers</span><span>2,50€</span></li>
+        </ul>
+
+        <p class="menu-note">Supplément sirop — 0,50€</p>
+    </div>
+
+    <!-- APÉRITIFS -->
+    <div class="menu-section">
+        <h2>Les apéritifs</h2>
+
+        <h3>7cl</h3>
+        <ul class="menu-list">
+            <li><span>Campari, Martini rouge/blanc, Suze, Byrrh</span><span>4,00€</span></li>
+        </ul>
+
+        <h3>10cl</h3>
+        <ul class="menu-list">
+            <li><span>Porto rouge, Muscat, Lillet blanc/rosé</span><span>4,50€</span></li>
+        </ul>
+
+        <h3>2cl</h3>
+        <ul class="menu-list">
+            <li><span>Ricard</span><span>2,50€</span></li>
+        </ul>
+    </div>
+
+    <!-- SPIRITUEUX -->
+    <div class="menu-section">
+        <h2>Les spiritueux (4cl)</h2>
+
+        <h3>Rhums</h3>
+        <ul class="menu-list">
+            <li><span>Captain Morgan 35°</span><span>5,50€</span></li>
+            <li><span>Havana Club 3 años</span><span>5,50€</span></li>
+            <li><span>Havana Especial</span><span>5,50€</span></li>
+            <li><span>3 Rivières 50°</span><span>6,00€</span></li>
+        </ul>
+
+        <h3>Whiskies</h3>
+        <ul class="menu-list">
+            <li><span>Ballantine’s 40°</span><span>5,50€</span></li>
+            <li><span>Bourbon Jim Beam 40°</span><span>6,00€</span></li>
+            <li><span>Glenlivet 18 ans</span><span>10,50€</span></li>
+            <li><span>Aberlour 10 ans</span><span>8,50€</span></li>
+        </ul>
+
+        <h3>Gins</h3>
+        <ul class="menu-list">
+            <li><span>Beefeater 40°</span><span>5,50€</span></li>
+            <li><span>Tanqueray 43,1°</span><span>7,50€</span></li>
+        </ul>
+
+        <h3>Autres</h3>
+        <ul class="menu-list">
+            <li><span>Renaissance Vodka</span><span>5,50€</span></li>
+            <li><span>Cognac Gauthier VS</span><span>6,00€</span></li>
+            <li><span>Fleur de bière</span><span>5,50€</span></li>
+            <li><span>Poire William</span><span>5,50€</span></li>
+            <li><span>Poire Cognac</span><span>5,50€</span></li>
+            <li><span>Get 27</span><span>5,50€</span></li>
+            <li><span>Jägermeister</span><span>5,50€</span></li>
+        </ul>
+
+        <p class="menu-note">Supplément soft — 2,50€</p>
+    </div>
+
+    <!-- COCKTAILS -->
+    <div class="menu-section">
+        <h2>Cocktails</h2>
+        <ul class="menu-list">
+            <li><span>Cocktails (base spiritueux)</span><span>9,00€</span></li>
+            <li><span>Rétrococktails (base apéritif)</span><span>8,00€</span></li>
+        </ul>
+        <p class="menu-note">Cocktails évolutifs — à voir directement avec Deb.</p>
+    </div>
+
+    <!-- SHOOTERS -->
+    <div class="menu-section">
+        <h2>Shooters</h2>
+        <ul class="menu-list">
+            <li><span>Shooters (2cl)</span><span>3,00€</span></li>
+        </ul>
+    </div>
+
+    <!-- VINS -->
+    <div class="menu-section">
+        <h2>Les vins (12cl)</h2>
+        <ul class="menu-list">
+            <li><span>Rosé Corolle</span><span>5,00€</span></li>
+            <li><span>Blanc Marennon Chardonnay</span><span>5,00€</span></li>
+            <li><span>Blanc moelleux Larmoni</span><span>5,00€</span></li>
+            <li><span>Rouge Château Pépusque</span><span>5,00€</span></li>
+        </ul>
+
+        <h3>Bouteilles (75cl)</h3>
+        <ul class="menu-list">
+            <li><span>Toutes bouteilles</span><span>27,00€</span></li>
+        </ul>
+    </div>
+
+    <!-- BULLES -->
+    <div class="menu-section">
+        <h2>Les bulles (12cl)</h2>
+        <ul class="menu-list">
+            <li><span>Méthode blanc de blanc “St Charles du Roy”</span><span>5,00€</span></li>
+            <li><span>Champagne “Piper”</span><span>10,00€</span></li>
+        </ul>
+
+        <h3>Bouteilles</h3>
+        <ul class="menu-list">
+            <li><span>Méthode blanc de blanc</span><span>27,00€</span></li>
+            <li><span>Champagne Piper</span><span>60,00€</span></li>
+        </ul>
+
+        <p class="menu-note">Supplément crème — 0,50€</p>
+    </div>
+
+    <!-- GRIGNOTAGES -->
+    <div class="menu-section">
+        <h2>À grignoter</h2>
+        <ul class="menu-list">
+            <li><span>Saucissons</span><span>6,00€</span></li>
+            <li><span>Terrines</span><span>9,00€</span></li>
+        </ul>
+    </div>
+
+    <p class="menu-footer-note">
+        Les prix sont TTC, service compris.  
+        L’abus d’alcool est dangereux pour la santé, à consommer avec modération.
+    </p>
+</section>
+
 
 {% endblock %}
