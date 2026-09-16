@@ -11,21 +11,32 @@
     <div class="reservation-block">
         <h1>Réserver une table</h1>
 
-        <form class="reservation-form">
-            <label for="name">Nom de la réservation</label>
-            <input type="text" id="name" name="name" placeholder="Votre nom">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
 
-            <label for="people">Nombre de personnes</label>
-            <input type="number" id="people" name="people" min="1" placeholder="Ex : 4">
+        {{ form_start(form, {'attr': {'class': 'reservation-form'}}) }}
 
-            <label for="datetime">Date et heure</label>
-            <input type="datetime-local" id="datetime" name="datetime">
+            {{ form_label(form.nomClient, 'Nom de la réservation') }}
+            {{ form_widget(form.nomClient, {'attr': {'placeholder': 'Votre nom'}}) }}
+            {{ form_errors(form.nomClient) }}
 
-            <label for="phone">Numéro de téléphone (pour vous recontacter)</label>
-            <input type="tel" id="phone" name="phone" placeholder="Ex : 07 12 34 56 78" required>
+            {{ form_label(form.nombrePersonnes, 'Nombre de personnes') }}
+            {{ form_widget(form.nombrePersonnes, {'attr': {'min': 1, 'placeholder': 'Ex : 4'}}) }}
+            {{ form_errors(form.nombrePersonnes) }}
+
+            {{ form_label(form.datetimeReservation, 'Date et heure') }}
+            {{ form_widget(form.datetimeReservation) }}
+            {{ form_errors(form.datetimeReservation) }}
+
+            {{ form_label(form.telephoneClient, 'Numéro de téléphone (pour vous recontacter)') }}
+            {{ form_widget(form.telephoneClient, {'attr': {'placeholder': 'Ex : 07 12 34 56 78'}}) }}
+            {{ form_errors(form.telephoneClient) }}
 
             <button type="submit" class="reserve-btn">Réserver</button>
-        </form>
+
+        {{ form_end(form) }}
+        
     </div>
 
     <div class="contact-block">
