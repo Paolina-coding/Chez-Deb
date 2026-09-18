@@ -6,15 +6,65 @@
 
 {% block body %}
 
-<section class="account-section">
-    <div class="account-block">
+<section class="account-container">
 
-        <p>Bonjour <strong>{{ user.email }}</strong></p>
+    <div class="account-left">
+        <h1>Mon compte</h1>
 
-        <a href="{{ path('app_logout') }}" class="logout-btn">
-            Se déconnecter
-        </a>
+        <p>
+            Bonjour 
+            <strong>
+                {% if user.nom %}
+                    {{ user.nom }}
+                {% else %}
+                    {{ user.email }}
+                {% endif %}
+            </strong>
+        </p>
+
+        <section class="account-section">
+            <h2>Nom d’utilisateur</h2>
+            <p>Ce nom sera utilisé pour vos réservations et vos publications de photos.</p>
+
+            {{ form_start(nameForm) }}
+                {{ form_widget(nameForm) }}
+                <button type="submit" class="btn">Mettre à jour</button>
+            {{ form_end(nameForm) }}
+        </section>
+
+        <section class="account-section">
+            <h2>Changer mon mot de passe</h2>
+
+            {{ form_start(passwordForm) }}
+                {{ form_widget(passwordForm) }}
+                <button type="submit" class="btn">Changer le mot de passe</button>
+            {{ form_end(passwordForm) }}
+        </section>
+
+        <a href="{{ path('app_logout') }}" class="btn">Se déconnecter</a>
+
     </div>
+
+    <div class="account-right">
+        <h2>Mes réservations</h2>
+
+        {% if reservations is empty %}
+            <p>Aucune réservation en cours.</p>
+        {% else %}
+            <ul>
+                {% for reservation in reservations %}
+                    <li>
+                        Réservation pour {{ reservation.nombrePersonnes }} personne{% if reservation.nombrePersonnes > 1 %}s{% endif %}
+                        le {{ reservation.datetimeReservation|date('d/m/Y') }} à {{ reservation.datetimeReservation|date('H:i') }}
+                        <a href="{{ path('reservation_delete', {id: reservation.id}) }}" class="btn delete-btn">
+                            Supprimer
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
 </section>
 
 {% endblock %}
