@@ -53,20 +53,6 @@
     box-sizing: border-box;
 }
 
-.reserve-btn {
-    background: var(--dark);
-    color: var(--light);
-    padding: 12px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.2s;
-}
-
-.reserve-btn:hover {
-    background: var(--accent);
-}
-
 .contact-block p {
     text-align: justify;
 }
