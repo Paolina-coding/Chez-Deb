@@ -37,6 +37,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, $token, string $firewallName): ?\Symfony\Component\HttpFoundation\Response
     {
-        return new \Symfony\Component\HttpFoundation\RedirectResponse('/');
+        return new \Symfony\Component\HttpFoundation\RedirectResponse(
+            $this->urlGenerator->generate('app_account')
+        );
     }
 }

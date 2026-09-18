@@ -23,7 +23,7 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $reservation->setUtilisateur(null);
+            $reservation->setUtilisateur($this->getUser());
 
             $em->persist($reservation);
             $em->flush();
@@ -36,5 +36,20 @@ class ReservationController extends AbstractController
         return $this->render('reservation/index.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/reservation/delete/{id}', name: 'reservation_delete')]
+    public function deleteReservation(Reservation $reservation, EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+
+        if ($reservation->getUtilisateur() !== $user) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $em->remove($reservation);
+        $em->flush();
+
+        return $this->redirectToRoute('app_account');
     }
 }
