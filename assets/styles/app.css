@@ -50,6 +50,14 @@ body {
   color: var(--gold);
 }
 
+.header-user-icon .user-svg {
+    width: 28px;
+    height: 28px;
+    color: var(--light);
+    cursor: pointer;
+    vertical-align: middle;
+}
+
 /* Main */
 body {
     display: flex;

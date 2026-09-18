@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<section class="login-section">
+
+    <div class="login-block">
+        <h1>Se connecter</h1>
+
+        <p class="login-register">
+            Pas encore de compte ?
+            <a href="#">S'inscrire</a>
+        </p>
+
+        {% if error %}
+            <div class="login-error">
+                Identifiants incorrects.
+            </div>
+        {% endif %}
+
+        {{ form_start(form, {'attr': {'class': 'login-form'}}) }}
+
+            {{ form_label(form.email, 'E-mail') }}
+            {{ form_widget(form.email, {'attr': {'placeholder': 'email@example.com'}}) }}
+
+            {{ form_label(form.password, 'Mot de passe') }}
+            {{ form_widget(form.password, {'attr': {'placeholder': 'Votre mot de passe'}}) }}
+
+            <button type="submit" class="login-btn">Se connecter</button>
+
+        {{ form_end(form) }}
+    </div>
+
+</section>
+
+{% endblock %}
