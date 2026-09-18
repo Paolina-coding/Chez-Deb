@@ -6,9 +6,11 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -45,6 +47,34 @@ class Utilisateur
         $this->photos = new ArrayCollection();
     }
 
+    //Security
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    public function getRoles(): array
+    {
+        return [$this->role];
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->role = $roles[0];
+        return $this;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->motDePasse;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Rien à effacer
+    }
+
+    // getters and setters
     public function getId(): ?int
     {
         return $this->id;
