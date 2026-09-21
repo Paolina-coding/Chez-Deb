@@ -24,6 +24,15 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/reservation/{id}/delete', name: 'admin_delete_reservation')]
+        public function deleteReservation(Reservation $reservation, EntityManagerInterface $em): Response
+        {
+            $em->remove($reservation);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_dashboard');
+        }
+
     #[Route('/admin/users', name: 'admin_users')]
     public function users(UtilisateurRepository $userRepo): Response
     {
@@ -32,5 +41,23 @@ class AdminController extends AbstractController
         return $this->render('admin/users.html.twig', [
             'users' => $users,
         ]);
+    }
+
+    #[Route('/admin/user/{id}/promote', name: 'admin_promote_user')]
+    public function promoteUser(Utilisateur $user, EntityManagerInterface $em): Response
+    {
+        $user->setRoles(['ROLE_ADMIN']);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_users');
+    }
+
+    #[Route('/admin/user/{id}/demote', name: 'admin_demote_user')]
+    public function demoteUser(Utilisateur $user, EntityManagerInterface $em): Response
+    {
+        $user->setRoles(['ROLE_USER']);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_users');
     }
 }

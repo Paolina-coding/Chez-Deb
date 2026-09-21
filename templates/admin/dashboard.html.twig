@@ -29,14 +29,17 @@
                     à 
                     <strong>{{ reservation.datetimeReservation|date('H:i') }}</strong><br>
 
-                    Téléphone : <strong>{{ reservation.telephoneClient }}</strong>
+                    Téléphone : <strong>{{ reservation.telephoneClient }}</strong><br>
+                    <a href="{{ path('admin_delete_reservation', { id: reservation.id }) }}" class="btn admin-btn" onclick="return confirm('Supprimer cette réservation ?');">
+                    Supprimer
+                    </a>
                 </li>
             {% endfor %}
         </ul>
     {% endif %}
 
     <a href="{{ path('admin_users') }}" class="btn">Voir les utilisateurs</a>
-    
+
 </section>
 
 {% endblock %}

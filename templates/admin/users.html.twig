@@ -17,10 +17,16 @@
             <li class="admin-item">
                 <strong>Nom : {{ user.nom ?? '—' }}</strong><br>
                 {{ user.email }}<br>
+                {{ 'ROLE_ADMIN' in user.roles ? 'Admin' : 'Client' }}
+
                 {% if 'ROLE_ADMIN' in user.roles %}
-                    Admin
+                    <a href="{{ path('admin_demote_user', { id: user.id }) }}" class="btn admin-btn">
+                        Supprimer les perms
+                    </a>
                 {% else %}
-                    Client
+                    <a href="{{ path('admin_promote_user', { id: user.id }) }}" class="btn admin-btn">
+                        Rajouter les perms
+                    </a>
                 {% endif %}
             </li>
         {% endfor %}
