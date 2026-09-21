@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<section class="admin-container">
+
+    <div class="admin-header">
+        <h1>Administration</h1>
+    </div>
+
+    <h2>Réservations à venir</h2>
+
+    {% if reservations is empty %}
+        <p>Aucune réservation à venir.</p>
+    {% else %}
+        <ul class="admin-list">
+            {% for reservation in reservations %}
+                <li class="admin-item">
+                    <strong>{{ reservation.nomClient }}</strong><br>
+
+                    Réservation pour 
+                    <strong>{{ reservation.nombrePersonnes }}</strong> personne{% if reservation.nombrePersonnes > 1 %}s{% endif %}
+                    le 
+                    <strong>{{ reservation.datetimeReservation|date('d/m/Y') }}</strong>
+                    à 
+                    <strong>{{ reservation.datetimeReservation|date('H:i') }}</strong><br>
+
+                    Téléphone : <strong>{{ reservation.telephoneClient }}</strong><br>
+                    <a href="{{ path('admin_delete_reservation', { id: reservation.id }) }}" class="btn admin-btn" onclick="return confirm('Supprimer cette réservation ?');">
+                    Supprimer
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{{ path('admin_users') }}" class="btn">Voir les utilisateurs</a>
+
+</section>
+
+{% endblock %}
