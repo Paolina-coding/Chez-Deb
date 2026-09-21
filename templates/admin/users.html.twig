@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<section class="admin-container">
+
+    <div class="admin-header">
+        <h1>Liste des utilisateurs</h1>
+    </div>
+
+    <ul class="admin-list">
+        {% for user in users %}
+            <li class="admin-item">
+                <strong>Nom : {{ user.nom ?? '—' }}</strong><br>
+                {{ user.email }}<br>
+                {% if 'ROLE_ADMIN' in user.roles %}
+                    Admin
+                {% else %}
+                    Client
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ path('admin_dashboard') }}" class="btn">Retour</a>
+
+</section>
+
+{% endblock %}

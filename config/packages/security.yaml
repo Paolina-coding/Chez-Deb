@@ -31,4 +31,4 @@ security:
                 path: app_logout
 
     access_control:
-        # pour protéger les pages admin
+        - { path: ^/admin, roles: ROLE_ADMIN }
