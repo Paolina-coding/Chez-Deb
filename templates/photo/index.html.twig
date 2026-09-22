@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/photos.css') }}">
+{% endblock %}
+
+{% block body %}
+<h1 class="photo-title">Galerie photo</h1>
+
+<p class="photos-intro">
+    Partagez vos meilleurs moments !<br>
+    <a href="{{ path('app_login') }}">Connectez‑vous ici</a> et ajoutez vos photos : une fois validées, elles rejoindront la galerie du bar.<br>
+    Montrez-nous vos soirées, vos cocktails préférés, vos sourires… cette galerie, c’est aussi la vôtre !
+</p>
+
+<div class="photos-container">
+    {% for photo in photos %}
+        <div class="photo-item" onclick="openLightbox('{{ photo.cheminFichier }}')">
+            <img src="{{ photo.cheminFichier }}" alt="{{ photo.nomFichier }}">
+        </div>
+    {% endfor %}
+</div>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Photo">
+</div>
+
+<script>
+function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+</script>
+{% endblock %}

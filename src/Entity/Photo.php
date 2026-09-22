@@ -20,6 +20,9 @@ class Photo
     private ?string $cheminFichier = null;
 
     #[ORM\Column]
+    private bool $validee = false;
+
+    #[ORM\Column]
     private ?\DateTime $dateCreation = null;
 
     #[ORM\ManyToOne(inversedBy: 'photos')]
@@ -52,6 +55,17 @@ class Photo
     {
         $this->cheminFichier = $cheminFichier;
 
+        return $this;
+    }
+
+    public function isValidee(): bool
+    {
+        return $this->validee;
+    }
+
+    public function setValidee(bool $validee): static
+    {
+        $this->validee = $validee;
         return $this;
     }
 
