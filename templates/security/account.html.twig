@@ -63,7 +63,40 @@
                 {% endfor %}
             </ul>
         {% endif %}
-    </div>
+
+        <h2>Mes photos</h2>
+        <p>Vous voulez nous partager un souvenir? Ajoutez vos photos ici! </p>
+        <p>Vos photos seront visibles sur la page photos après validation par un administrateur.</p>
+
+        {{ form_start(photoForm, {'attr': {'enctype': 'multipart/form-data'}}) }}
+            {{ form_errors(photoForm) }}
+            {{ form_row(photoForm.photo) }}
+            <button type="submit" class="btn">Envoyer la photo</button>
+        {{ form_end(photoForm) }}
+
+        {% if photos is not defined or photos is empty %}
+            <p>Vous n'avez encore envoyé aucune photo.</p>
+        {% else %}
+            <ul class="photo-list">
+                {% for photo in photos %}
+                    <li>
+                        <img src="{{ photo.cheminFichier }}" alt="Photo envoyée">
+                        {% if photo.isValidee %}
+                            <span class="badge ok">Validée</span>
+                        {% else %}
+                            <span class="badge pending">En attente</span>
+                        {% endif %}
+                        <form method="post"
+                            action="{{ path('photo_delete', {id: photo.id}) }}"
+                            onsubmit="return confirm('Supprimer cette photo ?');">
+                            <button type="submit" class="btn delete-btn">Supprimer</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        </div>
 
 </section>
 
