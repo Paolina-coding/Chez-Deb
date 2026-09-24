@@ -9,6 +9,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\UpdateNameType;
 use App\Form\ChangePasswordType;
+use App\Entity\Photo;
+use App\Form\PhotoUploadType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -67,12 +70,71 @@ class SecurityController extends AbstractController
             }
         }
 
+        // Formulaire upload photo
+        $photoForm = $this->createForm(PhotoUploadType::class);
+        $photoForm->handleRequest($request);
+
+        if ($photoForm->isSubmitted() && $photoForm->isValid()) {
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $photoForm->get('photo')->getData();
+
+            $newFilename = uniqid('photo_', true) . '.' . $uploadedFile->guessExtension();
+
+            $uploadDirectory = $this->getParameter('kernel.project_dir') . '/public/uploads/photos';
+            if (!is_dir($uploadDirectory)) {
+                mkdir($uploadDirectory, 0775, true);
+            }
+            $uploadedFile->move($uploadDirectory, $newFilename);
+
+            $photo = new Photo();
+            $photo->setNomFichier($newFilename);
+            $photo->setCheminFichier('/uploads/photos/' . $newFilename);
+            $photo->setDateCreation(new \DateTime());
+            $photo->setUtilisateur($user);
+            $photo->setValidee(false); 
+
+            $em->persist($photo);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre photo a bien été envoyée et attend maintenant la validation de l’administrateur.'
+            );
+
+            return $this->redirectToRoute('app_account');
+        }
+
         return $this->render('security/account.html.twig', [
-            'user' => $user,
-            'nameForm' => $nameForm->createView(),
+            'user'         => $user,
+            'nameForm'     => $nameForm->createView(),
             'passwordForm' => $passwordForm->createView(),
+            'photoForm'    => $photoForm->createView(),
+            'photos'       => $user->getPhotos(),
             'reservations' => $user->getReservations(),
         ]);
+    }
+
+    #[Route('/photo/{id}/delete', name: 'photo_delete', methods: ['POST'])]
+    public function deletePhoto(Photo $photo, EntityManagerInterface $em): Response
+    {
+        // Sécurité : la photo doit appartenir à l'utilisateur connecté
+        if ($photo->getUtilisateur() !== $this->getUser()) {
+            throw $this->createAccessDeniedException('Vous ne pouvez pas supprimer cette photo.');
+        }
+
+        // Suppression du fichier physique sur le disque
+        $filePath = $this->getParameter('kernel.project_dir')
+            . '/public' . $photo->getCheminFichier();
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $em->remove($photo);
+        $em->flush();
+
+        $this->addFlash('success', 'La photo a été supprimée.');
+
+        return $this->redirectToRoute('app_account');
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
