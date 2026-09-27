@@ -38,6 +38,60 @@
         </ul>
     {% endif %}
 
+    <h2>Photos en attente de validation</h2>
+
+    {% if photosEnAttente is empty %}
+        <p>Aucune photo en attente.</p>
+    {% else %}
+        <ul class="admin-list photo-admin-list">
+            {% for photo in photosEnAttente %}
+                <li class="admin-item">
+                    <img src="{{ photo.cheminFichier }}" alt="Photo en attente">
+                    <p>
+                        Envoyée par
+                        <strong>{{ photo.utilisateur.nom ?: photo.utilisateur.email }}</strong>
+                        le <strong>{{ photo.dateCreation|date('d/m/Y à H:i') }}</strong>
+                    </p>
+                    <div class="photo-actions">
+                        <form method="post" action="{{ path('admin_validate_photo', {id: photo.id}) }}">
+                            <button type="submit" class="btn admin-btn">Valider</button>
+                        </form>
+                        <form method="post"
+                            action="{{ path('admin_reject_photo', {id: photo.id}) }}"
+                            onsubmit="return confirm('Refuser et supprimer définitivement cette photo ?');">
+                            <button type="submit" class="btn admin-btn delete-btn">Refuser</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Photos validées</h2>
+
+    {% if photosValidees is empty %}
+        <p>Aucune photo validée.</p>
+    {% else %}
+        <ul class="admin-list photo-admin-list">
+            {% for photo in photosValidees %}
+                <li class="admin-item">
+                    <img src="{{ photo.cheminFichier }}" alt="Photo validée">
+                    <p>
+                        Envoyée par
+                        <strong>{{ photo.utilisateur.nom ?: photo.utilisateur.email }}</strong>
+                        le <strong>{{ photo.dateCreation|date('d/m/Y à H:i') }}</strong>
+                    </p>
+                    <form method="post"
+                        action="{{ path('admin_delete_photo', {id: photo.id}) }}"
+                        onsubmit="return confirm('Supprimer définitivement cette photo ?');">
+                        <button type="submit" class="btn admin-btn delete-btn">Supprimer</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <h2>Utilisateurs</h2>
     <a href="{{ path('admin_users') }}" class="btn">Voir les utilisateurs</a>
 
 </section>
