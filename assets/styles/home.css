@@ -18,7 +18,6 @@ body {
 /* Sections */
 section {
     padding: 0 20px;
-    color: var(--text);
 }
 
 .welcome {
@@ -38,7 +37,7 @@ section {
 }
 
 .welcome-content p {
-    text-align: justify; /* texte justifié */
+    text-align: justify;
 }
 
 .info-sections {
