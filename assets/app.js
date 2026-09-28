@@ -1,10 +1,33 @@
 import './stimulus_bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+function initBurger() {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav');
+
+    if (!burger || !nav) return;
+
+    const setOpen = (open) => {
+        nav.classList.toggle('is-open', open);
+        burger.classList.toggle('is-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+
+    burger.onclick = () => {
+        setOpen(!nav.classList.contains('is-open'));
+    };
+
+    nav.querySelectorAll('a').forEach((link) => {
+        link.onclick = () => setOpen(false);
+    });
+
+    document.onkeydown = (e) => {
+        if (e.key === 'Escape') setOpen(false);
+    };
+}
+
+// Au premier chargement
+document.addEventListener('DOMContentLoaded', initBurger);
+
+// À chaque changement de page avec Turbo
+document.addEventListener('turbo:load', initBurger);

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<html>
+
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Chez Deb{% endblock %}</title>
@@ -17,7 +17,7 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Logo Chez Deb" class="logo">
                 </a>
 
-                <nav class="nav">
+                <nav class="nav" id="main-nav">
                     <a href="/a-propos">La petite histoire</a>
                     <a href="/carte">Carte</a>
                     <a href="/reservation">Réservation et contact</a>
@@ -38,7 +38,13 @@
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
-                </nav>
+                </nav> 
+                <button class="burger" type="button" 
+                    aria-label="Ouvrir le menu" 
+                    aria-expanded="false" 
+                    aria-controls="main-nav">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </header>
 
@@ -90,6 +96,10 @@
             </div>
         </footer>
 
-
+    {% block javascripts %}
+        {% block importmap %}
+            {{ importmap('app') }}
+        {% endblock %}
+    {% endblock %}
     </body>
 </html>
