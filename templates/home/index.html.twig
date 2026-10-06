@@ -7,8 +7,28 @@
 {% block body %}
 
 <section class="hero">
-    <img src="{{ asset('images/homehero.png') }}" alt="Photo du bar" class="hero-img">
+    <div class="carousel">
+        <img src="{{ asset('images/hero1.png') }}" alt="Photo du bar" class="carousel-slide active">
+        <img src="{{ asset('images/hero2.jpg') }}" alt="Photo d'un plateau de dés" class="carousel-slide">
+        <img src="{{ asset('images/hero3.jpg') }}" alt="Photo du staff" class="carousel-slide">
+    </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.carousel-slide');
+    let current = 0;
+    function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+    }
+
+    setInterval(() => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+    }, 5000);
+    });
+</script>
 
 <section class="welcome">
     <div class="welcome-content">
