@@ -26,8 +26,37 @@ function initBurger() {
     };
 }
 
-// Au premier chargement
-document.addEventListener('DOMContentLoaded', initBurger);
+function initCarousel() {
+    const carousel = document.querySelector('.carousel');
+    const slides = document.querySelectorAll('.carousel-slide');
+    if (!carousel || slides.length < 2) return;
 
-// À chaque changement de page avec Turbo
-document.addEventListener('turbo:load', initBurger);
+    if (carousel.dataset.initialized === 'true') return;
+    carousel.dataset.initialized = 'true';
+
+    let current = 0;
+    const showSlide = (index) => {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[index].classList.add('active');
+    };
+    const next = () => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    };
+
+    let timer = setInterval(next, 5000);
+    document.addEventListener('turbo:before-cache', () => clearInterval(timer), { once: true });
+}
+
+const components = [initBurger, initCarousel];
+
+const initAll = () => components.forEach(fn => fn());
+
+document.addEventListener('DOMContentLoaded', initAll);
+document.addEventListener('turbo:load', initAll);
+window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+        document.querySelectorAll('.carousel').forEach(c => delete c.dataset.initialized);
+        initAll();
+    }
+});
