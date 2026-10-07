@@ -55,21 +55,22 @@
 }
 
 .lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
     display: none;
-    justify-content: center;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .85);
     align-items: center;
-    z-index: 9999;
+    justify-content: center;
+    cursor: zoom-in;
+    z-index: 1000;
+}
+
+.lightbox.is-open {
+    display: flex;
 }
 
 .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
+    max-width: 90vw;
+    max-height: 90vh;
+    cursor: default;
 }
-
