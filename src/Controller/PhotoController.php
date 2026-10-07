@@ -12,7 +12,10 @@ final class PhotoController extends AbstractController
     #[Route('/photos', name: 'app_photos')]
     public function index(PhotoRepository $repo): Response
     {
-        $photos = $repo->findBy(['validee' => true]);
+        $photos = $repo->findBy(
+            ['validee' => true],
+            ['dateCreation' => 'DESC', 'id' => 'DESC']
+        );
 
         return $this->render('photo/index.html.twig', [
             'photos' => $photos

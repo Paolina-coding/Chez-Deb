@@ -15,24 +15,14 @@
 
 <div class="photos-container">
     {% for photo in photos %}
-        <div class="photo-item" onclick="openLightbox('{{ photo.cheminFichier }}')">
-            <img src="{{ photo.cheminFichier }}" alt="{{ photo.nomFichier }}">
+        <div class="photo-item" data-lightbox-src="{{ photo.cheminFichier }}">
+            <img src="{{ photo.cheminFichier }}" alt="{{ photo.nomFichier }}" loading="lazy">
         </div>
     {% endfor %}
 </div>
 
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+<div id="lightbox" class="lightbox">
     <img id="lightbox-img" src="" alt="Photo">
 </div>
 
-<script>
-function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').style.display = 'flex';
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
-}
-</script>
 {% endblock %}
