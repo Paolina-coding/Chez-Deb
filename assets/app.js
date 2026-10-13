@@ -48,21 +48,7 @@ function initCarousel() {
     document.addEventListener('turbo:before-cache', () => clearInterval(timer), { once: true });
 }
 
-const components = [initBurger, initCarousel];
-
-const initAll = () => components.forEach(fn => fn());
-
-document.addEventListener('DOMContentLoaded', initAll);
-document.addEventListener('turbo:load', initAll);
-window.addEventListener('pageshow', (e) => {
-    if (e.persisted) {
-        document.querySelectorAll('.carousel').forEach(c => delete c.dataset.initialized);
-        initAll();
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
+function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     if (!lightbox || !lightboxImg) return;
@@ -93,4 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
             closeLightbox();
         }
     });
+}
+
+const components = [initBurger, initCarousel, initLightbox];
+
+const initAll = () => components.forEach(fn => fn());
+
+document.addEventListener('DOMContentLoaded', initAll);
+document.addEventListener('turbo:load', initAll);
+window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+        document.querySelectorAll('.carousel').forEach(c => delete c.dataset.initialized);
+        initAll();
+    }
 });
