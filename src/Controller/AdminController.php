@@ -35,7 +35,7 @@ class AdminController extends AbstractController
         );
 
         return $this->render('admin/dashboard.html.twig', [
-            'reservations' => $reservations,
+            'reservations' => $reservationRepo->findAllUpcoming(),
             'photosEnAttente' => $photosEnAttente,
             'photosValidees'  => $photosValidees,
         ]);

@@ -11,6 +11,7 @@ use App\Form\UpdateNameType;
 use App\Form\ChangePasswordType;
 use App\Entity\Photo;
 use App\Form\PhotoUploadType;
+use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -44,7 +45,8 @@ class SecurityController extends AbstractController
     public function account(
         Request $request,
         UserPasswordHasherInterface $hasher,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
+        ReservationRepository $reservationRepository
     ): Response {
         $user = $this->getUser();
         if (!$user) {
@@ -113,7 +115,7 @@ class SecurityController extends AbstractController
             'passwordForm' => $passwordForm->createView(),
             'photoForm'    => $photoForm->createView(),
             'photos'       => $user->getPhotos(),
-            'reservations' => $user->getReservations(),
+            'reservations' => $reservationRepository->findUpcomingByClient($user)
         ]);
     }
 

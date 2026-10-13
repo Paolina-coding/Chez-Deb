@@ -16,28 +16,25 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
-//    /**
-//     * @return Reservation[] Returns an array of Reservation objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findUpcomingByClient($user): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.utilisateur = :user')
+            ->andWhere('r.datetimeReservation >= :today')
+            ->setParameter('user', $user)
+            ->setParameter('today', new \DateTime('today'))
+            ->orderBy('r.datetimeReservation', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Reservation
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findAllUpcoming(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.datetimeReservation >= :today')
+            ->setParameter('today', new \DateTime('today'))
+            ->orderBy('r.datetimeReservation', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
