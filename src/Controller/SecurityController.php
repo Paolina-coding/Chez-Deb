@@ -47,6 +47,9 @@ class SecurityController extends AbstractController
         EntityManagerInterface $em
     ): Response {
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
 
         // Formulaire nom
         $nameForm = $this->createForm(UpdateNameType::class, $user);
