@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/legal.css') }}">
+{% endblock %}
+
+{% block title %}Mentions légales de Chez Deb{% endblock %}
+
+{% block body %}
+
+<section class="legal-page">
+    <div class="container">
+
+        <h1>Mentions légales</h1>
+
+        <div class="legal-section">
+            <h2>Éditeur du site</h2>
+
+            <p>
+                Le présent site est édité par <strong>Chez Deb</strong>.
+            </p>
+
+            <ul>
+                <li><strong>Forme juridique :</strong> [À compléter]</li>
+                <li><strong>Capital social :</strong> [À compléter]</li>
+                <li><strong>Siège social :</strong> [À compléter]</li>
+                <li><strong>SIRET :</strong> [À compléter]</li>
+                <li><strong>RCS :</strong> [À compléter]</li>
+                <li><strong>Téléphone :</strong> 07.51.62.91.39 </li>
+                <li><strong>Email :</strong> contactchezdeb@gmail.com </li>
+                <li><strong>Directeur de publication :</strong> Olivier Debrabant</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>Hébergement</h2>
+
+            <ul>
+                <li><strong>Hébergeur :</strong> [À compléter]</li>
+                <li><strong>Adresse :</strong> [À compléter]</li>
+                <li><strong>Téléphone :</strong> [À compléter]</li>
+                <li><strong>Site web :</strong> [À compléter]</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>Propriété intellectuelle</h2>
+
+            <p>
+                L'ensemble des contenus présents sur ce site
+                (textes, images, photographies, vidéos, logos,
+                graphismes et icônes) est protégé par les lois
+                relatives à la propriété intellectuelle.
+            </p>
+
+            <p>
+                Toute reproduction, représentation, adaptation ou
+                exploitation partielle ou totale de ces contenus,
+                sans autorisation préalable écrite, est interdite.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Responsabilité</h2>
+
+            <p>
+                Les informations diffusées sur ce site sont fournies
+                à titre indicatif. Malgré le soin apporté à leur
+                mise à jour, l'éditeur ne peut garantir leur
+                exactitude ou leur exhaustivité.
+            </p>
+
+            <p>
+                L'utilisateur reconnaît utiliser ces informations
+                sous sa responsabilité exclusive.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Liens hypertextes</h2>
+
+            <p>
+                Le site peut contenir des liens vers des sites tiers.
+                L'éditeur ne saurait être tenu responsable du contenu
+                ou du fonctionnement de ces sites externes.
+            </p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Données personnelles</h2>
+
+            <p>
+                Les données personnelles éventuellement collectées
+                via le site sont traitées conformément à la politique
+                de confidentialité disponible sur le site.
+            </p>
+        </div>
+
+        <p class="update-date">
+            Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+        </p>
+
+    </div>
+</section>
+{% endblock %}
